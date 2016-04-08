@@ -1,4 +1,4 @@
-package codejam2015.qualification;
+package codejam2016.qualification;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class A {
     Scanner sc = new Scanner(getClass().getResourceAsStream(IN));
-    static final String PATH = "src/codejam2015/qualification/";
+    static final String PATH = "src/codejam2016/qualification/";
     static final String FILENAME = "A-small-practice";
     static final String IN = FILENAME + ".in";
     static final String OUT = PATH + FILENAME + ".out";
