@@ -1,15 +1,17 @@
+//Status:
+//    B-small: correct
+//    B-large: correct
 package codejam2016.qualification;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class B {
     Scanner sc = new Scanner(getClass().getResourceAsStream(IN));
     static final String PATH = "src/codejam2016/qualification/";
-    static final String FILENAME = "B";
+    static final String FILENAME = "B-large";
     static final String IN = FILENAME + ".in";
     static final String OUT = PATH + FILENAME + ".out";
     PrintStream out = System.out;
@@ -17,24 +19,24 @@ public class B {
 
     private void solve() throws IOException {
         int ans = 0;
-        int diners = sc.nextInt();
-        ArrayList<Integer> plates = new ArrayList<Integer>();
-        int pancakes = 0;
+        StringBuilder stack = new StringBuilder(sc.next());
 
-        System.out.println("diners:" + diners);
-        for (int i = 0; i < diners; i++) {
-            plates.add(sc.nextInt());
-            System.out.println("plates" + i + ":" + plates.get(i));
-            pancakes += plates.get(i);
+        while (stack.toString().contains("-")) {
+            for (int i = stack.length(); i > 0; i--) {
+                if (stack.charAt(i - 1) == '-') {
+                    for (int j = 0; j < i; j++) {
+                        if (stack.charAt(j) == '+')
+                            stack.setCharAt(j, '-');
+                        else
+                            stack.setCharAt(j, '+');
+                    }
+                    ans++;
+                }
+            }
+
         }
 
-        // while (pancakes > 0) {
-        // ans++; //minutes++
-        //
-        //
-        // }
-
-        System.out.println("ans:" + ans);
+        System.out.println(ans);
         out.println(ans);
     }
 

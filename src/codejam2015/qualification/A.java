@@ -1,3 +1,6 @@
+//Status:
+//    A-small: correct
+//    A-large: correct
 package codejam2015.qualification;
 
 import java.io.FileOutputStream;

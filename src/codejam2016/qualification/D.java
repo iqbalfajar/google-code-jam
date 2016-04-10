@@ -1,6 +1,6 @@
 //Status:
-//    A-small: correct
-//    A-large: correct
+//    D-small: correct
+//    D-large: wrong try
 package codejam2016.qualification;
 
 import java.io.FileOutputStream;
@@ -9,10 +9,10 @@ import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
-public class A {
+public class D {
     Scanner sc = new Scanner(getClass().getResourceAsStream(IN));
     static final String PATH = "src/codejam2016/qualification/";
-    static final String FILENAME = "A-large";
+    static final String FILENAME = "D-large";
     static final String IN = FILENAME + ".in";
     static final String OUT = PATH + FILENAME + ".out";
     PrintStream out = System.out;
@@ -20,39 +20,37 @@ public class A {
     boolean writeToFile = true;
 
     private void solve() throws IOException {
-        int n = sc.nextInt();
-        int ans = 0;
-        int i = 1;
-        Integer[] arr = new Integer[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        int length = arr.length;
+        int k = sc.nextInt();
+        int c = sc.nextInt();
+        int s = sc.nextInt();
+        String ans = "";
 
-        if (n != 0) {
-            while (length > 0) {
-                ans = n * i;
-                String nString = Integer.toString(ans);
-
-                for (int j = 0; j < arr.length; j++) {
-                    for (int k = 0; k < nString.length(); k++) {
-                        if (Character
-                                .getNumericValue(nString.charAt(k)) == arr[j]) {
-                            arr[j] = 99;
-                            length -= 1;
-
-                            break;
-                        }
-                    }
-
-                }
-
-                i++;
+        if (k == 1) {
+            ans = "1";
+        } else if (c == 1) {
+            if (s < k) {
+                ans = "IMPOSSIBLE";
+            } else {
+                ans = solutions(1, k + 1);
             }
-
-            out.println(ans);
-            System.out.println(ans);
+        } else if (s < k - 1) {
+            ans = "IMPOSSIBLE";
         } else {
-            out.println("INSOMNIA");
-            System.out.println("INSOMNIA");
+            ans = solutions(2, k + 1);
         }
+
+        out.println(ans);
+        System.out.println(ans);
+    }
+
+    private String solutions(int start, int end) {
+        String result = "";
+
+        for (int number = start; number < end; number++) {
+            result += number + " ";
+        }
+
+        return result;
     }
 
     private void run() throws Exception {
@@ -70,6 +68,6 @@ public class A {
     }
 
     public static void main(String args[]) throws Exception {
-        new A().run();
+        new D().run();
     }
 }
