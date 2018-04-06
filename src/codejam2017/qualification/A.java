@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class A {
     Scanner sc = new Scanner(getClass().getResourceAsStream(IN));
     static final String PATH = "src/codejam2017/qualification/";
-    static final String FILENAME = "A-small-practice";
+    static final String FILENAME = "A-large-practice";
     static final String IN = FILENAME + ".in";
     static final String OUT = PATH + FILENAME + ".out";
     PrintStream out = System.out;
@@ -20,7 +20,38 @@ public class A {
     boolean writeToFile = true;
 
     private void solve() throws IOException {
+        int ans = 0;
+        StringBuilder stack = new StringBuilder(sc.next());
+        int k = sc.nextInt();
 
+        for (int i = 0; i <= stack.length() - k; i++) {
+            if (stack.charAt(i) == '+')
+                continue;
+
+            for (int j = 0; j < k; j++) {
+                if (stack.charAt(i + j) == '-')
+                    stack.setCharAt(i + j, '+');
+                else
+                    stack.setCharAt(i + j, '-');
+            }
+
+            ans++;
+        }
+
+        for (int i = stack.length() - k + 1; i < stack.length(); i++) {
+            if (stack.charAt(i) == '-') {
+                ans = -1;
+                break;
+            }
+        }
+
+        if (ans < 0) {
+            System.out.println("IMPOSSIBLE");
+            out.println("IMPOSSIBLE");
+        } else {
+            System.out.println(ans);
+            out.println(ans);
+        }
     }
 
     private void run() throws Exception {
